@@ -21,6 +21,8 @@ public class Field {
 
     // Storage for the cells.
     private Cell[][] field;
+    
+    private String test;
 
     /**
      * Represent a field of the given dimensions.
