@@ -14,7 +14,7 @@ import java.util.Random;
  */
 
 public class Mycoplasma extends Cell {
-
+    
     /**
      * Create a new Mycoplasma.
      *
@@ -37,6 +37,9 @@ public class Mycoplasma extends Cell {
              }
              else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
+             }
+             else if(neighbours.size() > 3) {
+                 setNextState(false);
              }
          } else {
              if (neighbours.size() == 3) {
