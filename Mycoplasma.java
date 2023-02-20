@@ -41,10 +41,15 @@ public class Mycoplasma extends Cell {
              else if(neighbours.size() > 3) {
                  setNextState(false);
              }
-         } else {
+        } else {
              if (neighbours.size() == 3) {
                  setNextState(true);
              }
          }
+    }
+    
+    public void switchColor(int Counter, Color Even, Color Odd)
+    {
+        ;
     }
 }

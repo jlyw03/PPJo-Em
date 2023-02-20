@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: MaturingCell are one of the simplest forms of life.  A type of
+ * Fun Fact: ColourCell are one of the simplest forms of life.  A type of
  * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
  * about 14,000 genes.
  *
@@ -13,20 +13,20 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class MaturingCell extends Cell {
+public class ColorCell extends Cell {
 
     /**
-     * Create a new MaturingCell.
+     * Create a new ColourCell.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public MaturingCell(Field field, Location location, Color col) {
+    public ColorCell(Field field, Location location, Color col) {
         super(field, location, col);
     }
 
     /**
-     * This is how the MaturingCell decides if it's alive or not
+     * This is how the ColourCell decides if it's alive or not
      */
     public void act() {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
@@ -35,13 +35,28 @@ public class MaturingCell extends Cell {
              if (neighbours.size() < 2) {
                  setNextState(false);
              }
-             else if (neighbours.size() == 2 || neighbours.size() == 3) {
+             else if (neighbours.size() > 3) {
                  setNextState(true);
              }
-         } else {
-             if (neighbours.size() == 3) {
+         } else{
+            if (neighbours.size() == 3) {
                  setNextState(true);
              }
-         }
+        }
     }
+        
+    /**
+     * This makes the cell change colour between generations 
+    */
+    public void switchColor(int Counter, Color Odd, Color Even) 
+    {
+        if (Counter %2 == 0) {
+            setColor(Even);
+        }
+        else
+        {
+            setColor(Odd);
+        }
+        }
+    
 }

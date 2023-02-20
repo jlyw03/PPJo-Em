@@ -21,6 +21,10 @@ public class Simulator {
 
     // The probability that a Mycoplasma is alive
     private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
+    
+    //The probability that a ColourCell is alive 
+    private static final double COLOURCELL_ALIVE_PROB = 0.2;
+    private static final double MATURINGCELL_ALIVE_PROB = 0.17;
 
     // List of cells in the field.
     private List<Cell> cells;
@@ -101,7 +105,13 @@ public class Simulator {
         generation++;
         for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
             Cell cell = it.next();
-            cell.act();
+            if (cell instanceof Mycoplasma) {
+                cell.act();
+            }
+            /*else if(cell instanceof ColorCell) {
+                cell.act();
+                cell.switchColor(generation, Color.GREEN, Color.RED);
+            }*/
         }
 
         for (Cell cell : cells) {
@@ -130,18 +140,27 @@ public class Simulator {
       field.clear();
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
-          Location location = new Location(row, col);
-          Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
-          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
-            cells.add(myco);
+        Location location = new Location(row, col);
+        
+          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {   
+              Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
+              cells.add(myco);
           }
+          else if (rand.nextDouble() <= COLOURCELL_ALIVE_PROB) {
+                ColorCell colourCell = new ColorCell(field, location, Color.RED);
+                cells.add(colourCell);
+            }
+          
           else {
             myco.setDead();
             cells.add(myco);
-          }
+            //colourCell.setDead();
+            //cells.add(colourCell);
         }
       }
     }
+    }
+    
 
     /**
      * Pause for a given time.

@@ -11,16 +11,12 @@ import java.util.List;
 public abstract class Cell {
     // Whether the cell is alive or not.
     private boolean alive;
-
     // Whether the cell will be alive in the next generation.
     private boolean nextAlive;
-
     // The cell's field.
     private Field field;
-
     // The cell's position in the field.
     private Location location;
-
     // The cell's color
     private Color color = Color.white;
 
@@ -44,6 +40,8 @@ public abstract class Cell {
      * next generation.
      */
     abstract public void act();
+    
+    abstract public void switchColor(int Counter, Color Even, Color Odd);
 
     /**
      * Check whether the cell is alive or not.
@@ -58,6 +56,10 @@ public abstract class Cell {
      */
     protected void setDead() {
         alive = false;
+        /* if(location != null) {
+            field.clear(location);
+            location = null;
+        }*/
     }
 
     /**
