@@ -41,7 +41,7 @@ public abstract class Cell {
      */
     abstract public void act();
     
-    abstract public void switchColor(int Counter, Color Even, Color Odd);
+    /*abstract public void switchColor(int Counter, Color Even, Color Odd);*/
 
     /**
      * Check whether the cell is alive or not.

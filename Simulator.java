@@ -108,10 +108,10 @@ public class Simulator {
             if (cell instanceof Mycoplasma) {
                 cell.act();
             }
-            /*else if(cell instanceof ColorCell) {
+            else if(cell instanceof ColorCell) {
                 cell.act();
-                cell.switchColor(generation, Color.GREEN, Color.RED);
-            }*/
+                /*cell.switchColor(generation, Color.GREEN, Color.RED);*/
+            }
         }
 
         for (Cell cell : cells) {
