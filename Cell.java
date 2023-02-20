@@ -39,10 +39,8 @@ public abstract class Cell {
      * Make this cell act - that is: the cell decides it's status in the
      * next generation.
      */
-    abstract public void act();
+    abstract public void act(int generation);
     
-    /*abstract public void switchColor(int Counter, Color Even, Color Odd);*/
-
     /**
      * Check whether the cell is alive or not.
      * @return true if the cell is still alive.

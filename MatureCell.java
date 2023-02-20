@@ -28,28 +28,31 @@ public class MatureCell extends Cell {
     /**
      * This is how the MatureCell decides if it's alive or not
      */
-    public void act() {
-         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-         setNextState(false);
-         if (isAlive()) {
-             if (neighbours.size() < 2) {
-                 setNextState(false);
-             }
-             else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                 setNextState(true);
-             }
-             else if(neighbours.size() > 3) {
-                 setNextState(false);
-             }
+    public void act(int generation) {
+        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        setNextState(false);
+        switchColor(generation);
+        if (isAlive()) {
+            if (neighbours.size() < 2) {
+                setNextState(false);
+            }
+            else if (neighbours.size() == 2 || neighbours.size() == 3) {
+                setNextState(true);
+            }
+            else if(neighbours.size() > 3) {
+                setNextState(false);
+            }
         } else {
-             if (neighbours.size() == 3) {
-                 setNextState(true);
-             }
-         }
+            if (neighbours.size() == 3) {
+                setNextState(true);
+            }
+        }
     }
     
-    public void switchColor(int Counter, Color Even, Color Odd)
+    public void switchColor(int Counter)
     {
-        ;
+        if (Counter >= 30) {
+            setColor(Color.BLUE);
+        }
     }
 }

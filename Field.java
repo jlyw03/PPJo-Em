@@ -155,7 +155,7 @@ public class Field {
 
         for (Location loc : adjLocations) {
           Cell cell = field[loc.getRow()][loc.getCol()];
-          if (cell.isAlive())
+          if (cell != null)
             neighbours.add(cell);
         }
         Collections.shuffle(neighbours, rand);

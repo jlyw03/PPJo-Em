@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=ColorCell
-comment0.text=\n\ Simplest\ form\ of\ life.\n\ Fun\ Fact\:\ ColourCell\ are\ one\ of\ the\ simplest\ forms\ of\ life.\ \ A\ type\ of\n\ bacteria,\ they\ only\ have\ 500-1000\ genes\!\ For\ comparison,\ fruit\ flies\ have\n\ about\ 14,000\ genes.\n\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\n\ @version\ 2022.02.28\n
+comment0.text=\r\n\ Simplest\ form\ of\ life.\r\n\ Fun\ Fact\:\ ColourCell\ are\ one\ of\ the\ simplest\ forms\ of\ life.\ \ A\ type\ of\r\n\ bacteria,\ they\ only\ have\ 500-1000\ genes\!\ For\ comparison,\ fruit\ flies\ have\r\n\ about\ 14,000\ genes.\r\n\r\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\r\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\r\n\ @version\ 2022.02.28\r\n
 comment1.params=field\ location\ col
 comment1.target=ColorCell(Field,\ Location,\ java.awt.Color)
-comment1.text=\n\ Create\ a\ new\ ColourCell.\n\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ location\ within\ the\ field.\n
-comment2.params=
-comment2.target=void\ act()
-comment2.text=\n\ This\ is\ how\ the\ ColourCell\ decides\ if\ it's\ alive\ or\ not\n
-comment3.params=Counter\ Odd\ Even
-comment3.target=void\ switchColor(int,\ java.awt.Color,\ java.awt.Color)
-comment3.text=\n\ This\ makes\ the\ cell\ change\ colour\ between\ generations\ \n
+comment1.text=\r\n\ Create\ a\ new\ ColorCell.\r\n\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
+comment2.params=generation
+comment2.target=void\ act(int)
+comment2.text=\r\n\ This\ is\ how\ the\ ColorCell\ decides\ if\ it's\ alive\ or\ not\r\n
+comment3.params=Counter
+comment3.target=void\ switchColor(int)
+comment3.text=\r\n\ This\ makes\ the\ cell\ change\ color\ between\ generations\ \r\n
 numComments=4

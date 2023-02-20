@@ -16,7 +16,7 @@ import java.util.Random;
 public class ColorCell extends Cell {
 
     /**
-     * Create a new ColourCell.
+     * Create a new ColorCell.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -26,11 +26,12 @@ public class ColorCell extends Cell {
     }
 
     /**
-     * This is how the ColourCell decides if it's alive or not
+     * This is how the ColorCell decides if it's alive or not
      */
-    public void act() {
-         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-         setNextState(false);
+    public void act(int generation) {
+        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        switchColor(generation);
+        setNextState(false);
          if (isAlive()) {
              if (neighbours.size() < 2) {
                  setNextState(false);
@@ -46,16 +47,16 @@ public class ColorCell extends Cell {
     }
         
     /**
-     * This makes the cell change colour between generations 
+     * This makes the cell change color between generations 
     */
-    public void switchColor(int Counter, Color Odd, Color Even) 
+    public void switchColor(int Counter) 
     {
         if (Counter %2 == 0) {
-            setColor(Even);
+            setColor(Color.GREEN);
         }
         else
         {
-            setColor(Odd);
+            setColor(Color.RED);
         }
         }
     
