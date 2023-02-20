@@ -141,13 +141,12 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
         Location location = new Location(row, col);
-        
+        Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
+        ColorCell colourCell = new ColorCell(field, location, Color.RED);
           if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {   
-              Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
               cells.add(myco);
           }
           else if (rand.nextDouble() <= COLOURCELL_ALIVE_PROB) {
-                ColorCell colourCell = new ColorCell(field, location, Color.RED);
                 cells.add(colourCell);
             }
           
