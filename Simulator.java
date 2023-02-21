@@ -169,6 +169,7 @@ public class Simulator {
                     MatureCell mature = new MatureCell(field, location, Color.CYAN);
                     cells.add(mature);
                 }
+
             }
         }
     }

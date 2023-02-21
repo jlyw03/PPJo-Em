@@ -32,32 +32,33 @@ public class ColorCell extends Cell {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         switchColor(generation);
         setNextState(false);
-         if (isAlive()) {
+        if (isAlive()) {
              if (neighbours.size() < 2) {
                  setNextState(false);
              }
              else if (neighbours.size() > 3) {
                  setNextState(true);
-             }
-         } else{
-            if (neighbours.size() == 3) {
+             } 
+          } else {
+                if (neighbours.size() == 3) {
                  setNextState(true);
+                }
              }
-        }
     }
+    
         
     /**
      * This makes the cell change color between generations 
     */
-    public void switchColor(int generation) 
+    public void switchColor(int numGenerations) 
     {
-        if (generation %2 == 0) {
+        if (numGenerations %2 == 0) {
+            System.out.println("hi");
             setColor(Color.BLUE);
-        }
+            }
         else
-        {
+            {
             setColor(Color.RED);
-        }
+            }
     }
-    
-}
+    }
