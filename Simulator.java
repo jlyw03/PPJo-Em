@@ -105,13 +105,14 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-        for(Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+        //for(Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
             for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
             Location location = new Location(row, col);
             Cell cell = field.getObjectAt(row, col);
             if (cell != null) {
-                    cell.act(generation);
+                    cell.act();
+                    System.out.println(location.toString());
             } 
             else {
                 int numOfNeighbours = field.getLivingNeighbours(location).size();
@@ -123,9 +124,7 @@ public class Simulator {
             }
             }   
             }
-        }
         
-
         /*for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 Cell cell = field.getObjectAt(row, col);*/
@@ -191,11 +190,11 @@ public class Simulator {
      */
     private Cell determineCell(int numOfNeighbours, Location location) { 
         if (numOfNeighbours == 3) {
-            return new MatureCell(field, null, Color.YELLOW);
+            return new MatureCell(field, location , Color.YELLOW);
         } else if (numOfNeighbours == 5) {
-            return new ColorCell(field, null, Color.RED);
+            return new ColorCell(field, location, Color.RED);
         } else if (numOfNeighbours == 6) {
-            return new Mycoplasma(field, null, Color.ORANGE);
+            return new Mycoplasma(field, location, Color.ORANGE);
         }
         return null;
     }

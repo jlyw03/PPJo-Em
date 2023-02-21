@@ -28,7 +28,7 @@ public class ColorCell extends Cell {
     /**
      * This is how the ColorCell decides if it's alive or not
      */
-    public void act(int generation) {
+    public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         switchColor(generation);
         setNextState(false);

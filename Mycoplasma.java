@@ -28,7 +28,7 @@ public class Mycoplasma extends Cell {
     /**
      * This is how the Mycoplasma decides if it's alive or not
      */
-    public void act(int generation) {
+    public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
          if (isAlive()) {

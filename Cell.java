@@ -19,6 +19,8 @@ public abstract class Cell {
     private Location location;
     // The cell's color
     private Color color = Color.white;
+    //generation count 
+    public int generation; 
 
 
     /**
@@ -28,6 +30,7 @@ public abstract class Cell {
      * @param location The location within the field.
      */
     public Cell(Field field, Location location, Color col) {
+        generation = 0;
         alive = true;
         nextAlive = false;
         this.field = field;
@@ -39,7 +42,7 @@ public abstract class Cell {
      * Make this cell act - that is: the cell decides it's status in the
      * next generation.
      */
-    abstract public void act(int generation);
+    abstract public void act();
     
     /**
      * Check whether the cell is alive or not.
@@ -113,4 +116,11 @@ public abstract class Cell {
         return field;
     }
     
+    /**
+     * Return the cell's generation 
+     */
+    protected int getGeneration()
+    {
+        return generation; 
+    }
 }
