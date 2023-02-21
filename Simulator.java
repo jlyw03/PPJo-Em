@@ -105,32 +105,36 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-        for (int row = 0; row < field.getDepth(); row++) {
+        for(Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+            for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                Location location = new Location(row, col);
-                Cell cell = field.getObjectAt(row, col);
-                if (cell != null) {
+            Location location = new Location(row, col);
+            Cell cell = field.getObjectAt(row, col);
+            if (cell != null) {
                     cell.act(generation);
-                } else {
-                    int numOfNeighbours = field.getLivingNeighbours(location).size();
-                    System.out.println(numOfNeighbours);
-                    Cell determinedCell = determineCell(numOfNeighbours, location);
-                    if (determinedCell != null) {
-                        field.place(determinedCell, row, col);
-                    }
+            } 
+            else {
+                int numOfNeighbours = field.getLivingNeighbours(location).size();
+                System.out.println(numOfNeighbours);
+                Cell determinedCell = determineCell(numOfNeighbours, location);
+                if (determinedCell != null) {
+                    field.place(determinedCell, row, col);
                 }
             }
-        }
-
-        for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                Cell cell = field.getObjectAt(row, col);
-                cell.updateState();
+            }   
             }
         }
-        view.showStatus(generation, field);
-    }
+        
 
+        /*for (int row = 0; row < field.getDepth(); row++) {
+            for (int col = 0; col < field.getWidth(); col++) {
+                Cell cell = field.getObjectAt(row, col);*/
+        for (Cell cell : cells) {
+            cell.updateState();
+        }
+         view.showStatus(generation, field);
+    }
+        
     /**
      * Reset the simulation to a starting position.
      */

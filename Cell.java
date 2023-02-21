@@ -112,4 +112,5 @@ public abstract class Cell {
     protected Field getField() {
         return field;
     }
+    
 }
