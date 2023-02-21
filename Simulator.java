@@ -106,13 +106,12 @@ public class Simulator {
     public void simOneGeneration() {
         generation++;
         //for(Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
-            for (int row = 0; row < field.getDepth(); row++) {
+        /*for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
             Location location = new Location(row, col);
             Cell cell = field.getObjectAt(row, col);
             if (cell != null) {
                     cell.act();
-                    System.out.println(location.toString());
             } 
             else {
                 int numOfNeighbours = field.getLivingNeighbours(location).size();
@@ -121,18 +120,21 @@ public class Simulator {
                 if (determinedCell != null) {
                     field.place(determinedCell, row, col);
                 }
-            }
-            }   
-            }
-        
-        /*for (int row = 0; row < field.getDepth(); row++) {
+            
+            for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                Cell cell = field.getObjectAt(row, col);*/
-        for (Cell cell : cells) {
-            cell.updateState();
+                Cell cell = field.getObjectAt(row, col);
+            }*/
+        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+            Cell cell = it.next();
+            cell.act();
         }
-         view.showStatus(generation, field);
-    }
+
+        for (Cell cell : cells) {
+          cell.updateState();
+        }
+        view.showStatus(generation, field);
+    }   
         
     /**
      * Reset the simulation to a starting position.
@@ -156,13 +158,16 @@ public class Simulator {
             for (int col = 0; col < field.getWidth(); col++) {
                 Location location = new Location(row, col);
                 if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {   
-                    new Mycoplasma(field, location, Color.ORANGE);
+                    Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
+                    cells.add(myco);
                 } 
                 else if (rand.nextDouble() <= COLOURCELL_ALIVE_PROB) {
-                    new ColorCell(field, location, Color.RED);
+                    ColorCell color = new ColorCell(field, location, Color.RED);
+                    cells.add(color);
                 }
                 else if (rand.nextDouble() <= MATURECELL_ALIVE_PROB) {
-                    new MatureCell(field, location, Color.CYAN);
+                    MatureCell mature = new MatureCell(field, location, Color.CYAN);
+                    cells.add(mature);
                 }
             }
         }
@@ -190,7 +195,7 @@ public class Simulator {
      */
     private Cell determineCell(int numOfNeighbours, Location location) { 
         if (numOfNeighbours == 3) {
-            return new MatureCell(field, location , Color.YELLOW);
+            return new MatureCell(field, location, Color.YELLOW);
         } else if (numOfNeighbours == 5) {
             return new ColorCell(field, location, Color.RED);
         } else if (numOfNeighbours == 6) {

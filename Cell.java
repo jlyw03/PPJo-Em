@@ -57,10 +57,10 @@ public abstract class Cell {
      */
     protected void setDead() {
         alive = false;
-        /* if(location != null) {
+        if(location != null) {
             field.clear(location);
             location = null;
-        }*/
+        }
     }
 
     /**

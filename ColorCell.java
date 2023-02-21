@@ -14,7 +14,7 @@ import java.util.Random;
  */
 
 public class ColorCell extends Cell {
-
+    
     /**
      * Create a new ColorCell.
      *
@@ -49,15 +49,15 @@ public class ColorCell extends Cell {
     /**
      * This makes the cell change color between generations 
     */
-    public void switchColor(int Counter) 
+    public void switchColor(int generation) 
     {
-        if (Counter %2 == 0) {
-            setColor(Color.GREEN);
+        if (generation %2 == 0) {
+            setColor(Color.BLUE);
         }
         else
         {
             setColor(Color.RED);
         }
-        }
+    }
     
 }
