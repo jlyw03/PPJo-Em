@@ -46,7 +46,6 @@ public class ColorCell extends Cell {
              }
     }
     
-        
     /**
      * This makes the cell change color between generations 
     */
