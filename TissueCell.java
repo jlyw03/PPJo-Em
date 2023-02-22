@@ -13,7 +13,7 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class MatureCell extends Cell {
+public class TissueCell extends Cell {
     
     /**
      * Create a new MatureCell.
@@ -21,8 +21,10 @@ public class MatureCell extends Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public MatureCell(Field field, Location location, Color col) {
-        super(field, location, col);
+    public TissueCell(Field field, Location location) {
+        super(field, location);
+        setColor(Color.BLUE);
+        setAge(0);
     }
 
     /**
@@ -31,28 +33,21 @@ public class MatureCell extends Cell {
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
-        switchColor(generation);
+        incrementAge();
+        switchColor();
         if (isAlive()) {
-            if (neighbours.size() < 2) {
-                setNextState(false);
-            }
-            else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                setNextState(true);
-            }
-            else if(neighbours.size() > 3) {
-                setNextState(false);
-            }
-        } else {
-            if (neighbours.size() == 3) {
-                setNextState(true);
+            if (getAge() >= 80) {
+                 setNextState(false);
+            } 
+            else {
+                 setNextState(true);
             }
         }
     }
     
-    public void switchColor(int Counter)
-    {
-        if (Counter >= 30) {
-            setColor(Color.BLUE);
+    private void switchColor() {
+        if (getAge() >= 40) {
+            setColor(Color.GRAY);
         }
     }
 }

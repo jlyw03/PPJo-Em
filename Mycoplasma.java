@@ -21,8 +21,10 @@ public class Mycoplasma extends Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Mycoplasma(Field field, Location location, Color col) {
-        super(field, location, col);
+    public Mycoplasma(Field field, Location location) {
+        super(field, location);
+        setColor(Color.GREEN);
+        setAge(0);
     }
 
     /**
@@ -30,6 +32,7 @@ public class Mycoplasma extends Cell {
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        incrementAge();
         setNextState(false);
          if (isAlive()) {
              if (neighbours.size() < 2) {
@@ -41,10 +44,6 @@ public class Mycoplasma extends Cell {
              else if(neighbours.size() > 3) {
                  setNextState(false);
              }
-        } else {
-             if (neighbours.size() == 3) {
-                 setNextState(true);
-             }
-         }
+        }
     }
 }
