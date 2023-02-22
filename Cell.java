@@ -19,8 +19,8 @@ public abstract class Cell {
     private Location location;
     // The cell's color
     private Color color = Color.white;
-    //generation count 
-    public int generation; 
+    // The cell's age
+    private int age;
 
 
     /**
@@ -29,13 +29,11 @@ public abstract class Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Cell(Field field, Location location, Color col) {
-        generation = 0;
+    public Cell(Field field, Location location) {
         alive = true;
         nextAlive = false;
         this.field = field;
         setLocation(location);
-        setColor(col);
     }
 
     /**
@@ -57,10 +55,9 @@ public abstract class Cell {
      */
     protected void setDead() {
         alive = false;
-        /*if(location != null) {
+        if(location != null) {
             field.clear(location);
-            location = null;
-        }*/
+        }
     }
 
     /**
@@ -75,6 +72,9 @@ public abstract class Cell {
      */
     public void updateState() {
       alive = nextAlive;
+      if (alive == false) {
+          setDead();
+      }
     }
 
     /**
@@ -117,10 +117,29 @@ public abstract class Cell {
     }
     
     /**
-     * Return the cell's generation 
+     * Return the cell's age 
+     * @return The cell's age
      */
-    protected int getGeneration()
+    protected int getAge()
     {
-        return generation; 
+        return age; 
+    }
+    
+    /**
+     * Sets the cell's age 
+     * 
+     * @param int Age
+     */
+    public void setAge(int age)
+    {
+        age = age; 
+    }
+    
+    /**
+     * Increases the cell's age by 1
+     */
+    public void incrementAge()
+    {
+        age++; 
     }
 }
