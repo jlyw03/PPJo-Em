@@ -49,7 +49,6 @@ public class WhiteBloodCell extends Cell {
              }
     }
     
-        
     /**
      * This makes the cell change color between generations 
     */
