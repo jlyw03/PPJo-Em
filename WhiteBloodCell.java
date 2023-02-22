@@ -13,7 +13,7 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class WhiteBloodCell extends Cell {
+public class ColorCell extends Cell {
     
     /**
      * Create a new ColorCell.
@@ -21,10 +21,8 @@ public class WhiteBloodCell extends Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public WhiteBloodCell(Field field, Location location) {
-        super(field, location);
-        setColor(Color.YELLOW);
-        setAge(0);
+    public ColorCell(Field field, Location location, Color col) {
+        super(field, location, col);
     }
 
     /**
@@ -32,29 +30,35 @@ public class WhiteBloodCell extends Cell {
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        incrementAge();
-        switchColor();
+        switchColor(generation);
         setNextState(false);
         if (isAlive()) {
-             if (getAge() >= 30) {
+             if (neighbours.size() < 2) {
                  setNextState(false);
              }
-             else {
+             else if (neighbours.size() > 3) {
                  setNextState(true);
+             } 
+          } else {
+                if (neighbours.size() == 3) {
+                 setNextState(true);
+                }
              }
-        }
     }
+    
         
     /**
      * This makes the cell change color between generations 
     */
-    private void switchColor() {
-        if (getAge() %2 == 0) {
-            setColor(Color.ORANGE);
-        }
-        else {
-            setColor(Color.YELLOW);
-        }
+    public void switchColor(int numGenerations) 
+    {
+        if (numGenerations %2 == 0) {
+            System.out.println("hi");
+            setColor(Color.BLUE);
+            }
+        else
+            {
+            setColor(Color.RED);
+            }
     }
-    
-}
+    }

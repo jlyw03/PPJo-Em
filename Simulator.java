@@ -155,6 +155,7 @@ public class Simulator {
                 else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB) {
                     TissueCell mature = new TissueCell(field, location);
                 }
+
             }
         }
     }
