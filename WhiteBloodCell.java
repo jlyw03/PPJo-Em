@@ -13,7 +13,7 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class ColorCell extends Cell {
+public class WhiteBloodCell extends Cell {
     
     /**
      * Create a new ColorCell.
@@ -21,8 +21,10 @@ public class ColorCell extends Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public ColorCell(Field field, Location location, Color col) {
-        super(field, location, col);
+    public WhiteBloodCell(Field field, Location location) {
+        super(field, location);
+        setColor(Color.YELLOW);
+        setAge(0);
     }
 
     /**
@@ -30,7 +32,8 @@ public class ColorCell extends Cell {
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        switchColor(generation);
+        incrementAge();
+        switchColor();
         setNextState(false);
         if (isAlive()) {
              if (neighbours.size() < 2) {
@@ -50,15 +53,14 @@ public class ColorCell extends Cell {
     /**
      * This makes the cell change color between generations 
     */
-    public void switchColor(int numGenerations) 
+    public void switchColor() 
     {
-        if (numGenerations %2 == 0) {
-            System.out.println("hi");
-            setColor(Color.BLUE);
+        if (getAge() %2 == 0) {
+            setColor(Color.ORANGE);
             }
         else
             {
-            setColor(Color.RED);
+            setColor(Color.YELLOW);
             }
     }
     }
