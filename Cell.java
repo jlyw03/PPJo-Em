@@ -118,6 +118,7 @@ public abstract class Cell {
     
     /**
      * Return the cell's age 
+     * @return The cell's age
      */
     protected int getAge()
     {
@@ -126,6 +127,8 @@ public abstract class Cell {
     
     /**
      * Sets the cell's age 
+     * 
+     * @param int Age
      */
     public void setAge(int age)
     {
