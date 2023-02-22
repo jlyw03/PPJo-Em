@@ -23,13 +23,10 @@ public class Simulator {
     private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
     
     // The probability that a ColourCell is alive 
-    private static final double COLOURCELL_ALIVE_PROB = 0.2;
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.2;
     
     // The probability that a MatureCell is alive
-    private static final double MATURECELL_ALIVE_PROB = 0.17;
-
-    // List of cells in the field.
-    private List<Cell> cells;
+    private static final double TISSUECELL_ALIVE_PROB = 0.17;
 
     // The current state of the field.
     private Field field;
@@ -68,7 +65,6 @@ public class Simulator {
             width = DEFAULT_WIDTH;
         }
 
-        cells = new ArrayList<>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
@@ -105,34 +101,27 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-        //for(Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
-        /*for (int row = 0; row < field.getDepth(); row++) {
+        for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-            Location location = new Location(row, col);
-            Cell cell = field.getObjectAt(row, col);
-            if (cell != null) {
-                    cell.act();
-            } 
-            else {
-                int numOfNeighbours = field.getLivingNeighbours(location).size();
-                System.out.println(numOfNeighbours);
-                Cell determinedCell = determineCell(numOfNeighbours, location);
-                if (determinedCell != null) {
-                    field.place(determinedCell, row, col);
+                Location location = new Location(row, col);
+                Cell cell = field.getObjectAt(row, col);
+                if (cell != null) {
+                        cell.act();
+                        cell.updateState();
+                } 
+                else {
+                    int numOfNeighbours = field.getLivingNeighbours(location).size();
+                    determineCell(numOfNeighbours, location);
                 }
+            }
+        }
             
-            for (int row = 0; row < field.getDepth(); row++) {
+        for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 Cell cell = field.getObjectAt(row, col);
-            }*/
-        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
-            Cell cell = it.next();
-            cell.act();
+            }
         }
-
-        for (Cell cell : cells) {
-          cell.updateState();
-        }
+        
         view.showStatus(generation, field);
     }   
         
@@ -141,7 +130,7 @@ public class Simulator {
      */
     public void reset() {
         generation = 0;
-        cells.clear();
+        field.clear();
         populate();
 
         // Show the starting state in the view.
@@ -158,16 +147,13 @@ public class Simulator {
             for (int col = 0; col < field.getWidth(); col++) {
                 Location location = new Location(row, col);
                 if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {   
-                    Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
-                    cells.add(myco);
+                    Mycoplasma myco = new Mycoplasma(field, location);
                 } 
-                else if (rand.nextDouble() <= COLOURCELL_ALIVE_PROB) {
-                    ColorCell color = new ColorCell(field, location, Color.RED);
-                    cells.add(color);
+                else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB) {
+                    WhiteBloodCell color = new WhiteBloodCell(field, location);
                 }
-                else if (rand.nextDouble() <= MATURECELL_ALIVE_PROB) {
-                    MatureCell mature = new MatureCell(field, location, Color.CYAN);
-                    cells.add(mature);
+                else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB) {
+                    TissueCell mature = new TissueCell(field, location);
                 }
 
             }
@@ -194,14 +180,13 @@ public class Simulator {
      * @param Location location
      * @return Cell type
      */
-    private Cell determineCell(int numOfNeighbours, Location location) { 
+    private void determineCell(int numOfNeighbours, Location location) { 
         if (numOfNeighbours == 3) {
-            return new MatureCell(field, location, Color.YELLOW);
+            new Mycoplasma(field, location);
         } else if (numOfNeighbours == 5) {
-            return new ColorCell(field, location, Color.RED);
-        } else if (numOfNeighbours == 6) {
-            return new Mycoplasma(field, location, Color.ORANGE);
+            new WhiteBloodCell(field, location);
+        } else if (numOfNeighbours == 4) {
+            new TissueCell(field, location);
         }
-        return null;
     }
 }
