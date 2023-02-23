@@ -14,15 +14,19 @@ import java.util.Random;
  */
 
 public class Mycoplasma extends Cell {
-    
+    private static final double INFECTED_PROBABILITY = 0.04;
+    private static final double EXPLOSION_PROBABILITY = 0.02;
     /**
      * Create a new Mycoplasma.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Mycoplasma(Field field, Location location, Color col) {
-        super(field, location, col);
+    public Mycoplasma(Field field, Location location) {
+        super(field, location);
+        setColor(Color.MAGENTA);
+        setAge(0);
+        
     }
 
     /**
@@ -30,8 +34,26 @@ public class Mycoplasma extends Cell {
      */
     public void act() {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+         incrementAge();
          setNextState(false);
-         if (isAlive()) {
+         Random rand = Randomizer.getRandom();
+         if (rand.nextDouble() <= INFECTED_PROBABILITY) {
+             isInfected();
+             setColor(Color.GREEN);
+             /*if (rand.nextDouble() <= EXPLOSION_PROBABILITY) {
+                 for(Cell neighbour: neighbours) {
+                 neighbour.setNextState(false);
+             }*/
+             /*else {
+                 if neohgboruign cell alive{
+                     
+                 }neighbours get infected
+             }*/
+             }
+        else {
+             setColor(Color.MAGENTA);
+             }
+        if (isAlive()) {
              if (neighbours.size() < 2) {
                  setNextState(false);
              }
@@ -48,3 +70,4 @@ public class Mycoplasma extends Cell {
          }
     }
 }
+

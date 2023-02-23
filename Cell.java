@@ -23,6 +23,12 @@ public abstract class Cell {
 
     // The cell's color
     private Color color = Color.white;
+    
+    //The cell's age 
+    private int age;
+    
+    //The cell's disease state
+    private boolean diseased;
 
 
     /**
@@ -31,12 +37,12 @@ public abstract class Cell {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Cell(Field field, Location location, Color col) {
+    public Cell(Field field, Location location) {
         alive = true;
+        diseased = false;
         nextAlive = false;
         this.field = field;
         setLocation(location);
-        setColor(col);
     }
 
     /**
@@ -112,4 +118,52 @@ public abstract class Cell {
     protected Field getField() {
         return field;
     }
+    
+      /**
+     * Return the cell's age 
+     * @return The cell's age
+     */
+    protected int getAge()
+    {
+        return age; 
+    }
+    
+    /**
+     * Sets the cell's age 
+     * 
+     * @param int Age
+     */
+    protected void setAge(int age)
+    {
+        age = age; 
+    }
+    
+    /**
+     * Increases the cell's age by 1
+     */
+    protected void incrementAge()
+    {
+        age++; 
+    }
+    
+    /**
+     * Makes cells infected
+     */
+    protected void isInfected()
+    {
+        diseased = true;
+    }
+    
+    /**
+     * Return's cell's infected state
+     */
+    protected boolean checkHealth()
+    {
+        if (diseased) {
+            return true;
+        } else {
+            return false;
+    }
+    }
+    
 }

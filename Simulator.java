@@ -20,7 +20,13 @@ public class Simulator {
     private static final int DEFAULT_DEPTH = 80;
 
     // The probability that a Mycoplasma is alive
-    private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
+    private static final double MYCOPLASMA_ALIVE_PROB = 0.02;
+    
+    // The probability that a ColourCell is alive 
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.05;
+    
+    // The probability that a MatureCell is alive
+    private static final double TISSUECELL_ALIVE_PROB = 0.08;
 
     // List of cells in the field.
     private List<Cell> cells;
@@ -99,14 +105,27 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
-            Cell cell = it.next();
-            cell.act();
+         for (int row = 0; row < field.getDepth(); row++) {
+            for (int col = 0; col < field.getWidth(); col++) {
+                Location location = new Location(row, col);
+                Cell cell = field.getObjectAt(row, col);
+                if (cell != null) {
+                        cell.act();
+                        cell.updateState();
+                } 
+                else {
+                    int numOfNeighbours = field.getLivingNeighbours(location).size();
+                    determineCell(numOfNeighbours, location);
+                }
+            }
+        }
+            
+        for (int row = 0; row < field.getDepth(); row++) {
+            for (int col = 0; col < field.getWidth(); col++) {
+                Cell cell = field.getObjectAt(row, col);
+            }
         }
 
-        for (Cell cell : cells) {
-          cell.updateState();
-        }
         view.showStatus(generation, field);
     }
 
@@ -131,13 +150,22 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
           Location location = new Location(row, col);
-          Mycoplasma myco = new Mycoplasma(field, location, Color.ORANGE);
           if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+            Mycoplasma myco = new Mycoplasma(field, location);
             cells.add(myco);
           }
-          else {
-            myco.setDead();
-            cells.add(myco);
+          else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
+            WhiteBloodCell color = new WhiteBloodCell(field, location);
+            cells.add(color);
+          }
+          else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
+            TissueCell mature = new TissueCell(field, location);
+            cells.add(mature);
+          }
+          else{
+            Mycoplasma dead = new Mycoplasma(field, location);
+            dead.setDead();
+            cells.add(dead);
           }
         }
       }
@@ -155,4 +183,21 @@ public class Simulator {
             // wake up
         }
     }
+    
+     /**
+     * Checks if conditions of the cell to determine which cell should come
+     * alive in this location
+     * @param Location location
+     * @return Cell type
+     */
+    private void determineCell(int numOfNeighbours, Location location) { 
+        if (numOfNeighbours == 3) {
+            new Mycoplasma(field, location);
+        } else if (numOfNeighbours == 5) {
+            new WhiteBloodCell(field, location);
+        } else if (numOfNeighbours == 4) {
+            new TissueCell(field, location);
+        }
+    }
+
 }
