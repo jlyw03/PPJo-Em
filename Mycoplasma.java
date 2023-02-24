@@ -26,18 +26,16 @@ public class Mycoplasma extends Cell {
         super(field, location);
         setColor(Color.MAGENTA);
         setAge(0);
-        
     }
 
     /**
      * This is how the Mycoplasma decides if it's alive or not
      */
     public void act() {
-         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-         incrementAge();
-         setNextState(false);
-         Random rand = Randomizer.getRandom();
-         
+        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        incrementAge();
+        setNextState(false);
+        Random rand = Randomizer.getRandom();
         if (isAlive()) {
             /*if(!checkHealth()) {
                 setColor(Color.MAGENTA);
@@ -51,20 +49,20 @@ public class Mycoplasma extends Cell {
             }
             else */if (neighbours.size() < 2) {
                  setNextState(false);
-             }
+            }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
-             }
+            }
             else if(neighbours.size() > 3) {
                  setNextState(false);
-             }
-          else {
-             if (neighbours.size() == 3) {
-                 setNextState(true);
-             }
-         }
+            }
+        }
+        else {
+            if (neighbours.size() == 3) {
+                setNextState(true);
+            }
+        }
     }
-}
 }
 
 

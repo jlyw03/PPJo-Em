@@ -159,11 +159,6 @@ public abstract class Cell {
      */
     protected boolean checkHealth()
     {
-        if (diseased) {
-            return true;
-        } else {
-            return false;
-    }
-    }
-    
+        return diseased;
+    } 
 }
