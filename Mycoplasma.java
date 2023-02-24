@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class Mycoplasma extends Cell {
     private static final double INFECTED_PROBABILITY = 0.04;
-    private static final double EXPLOSION_PROBABILITY = 0.02;
+    
     /**
      * Create a new Mycoplasma.
      *
@@ -37,37 +37,34 @@ public class Mycoplasma extends Cell {
          incrementAge();
          setNextState(false);
          Random rand = Randomizer.getRandom();
-         if (rand.nextDouble() <= INFECTED_PROBABILITY) {
-             isInfected();
-             setColor(Color.GREEN);
-             /*if (rand.nextDouble() <= EXPLOSION_PROBABILITY) {
-                 for(Cell neighbour: neighbours) {
-                 neighbour.setNextState(false);
-             }*/
-             /*else {
-                 if neohgboruign cell alive{
-                     
-                 }neighbours get infected
-             }*/
-             }
-        else {
-             setColor(Color.MAGENTA);
-             }
+         
         if (isAlive()) {
-             if (neighbours.size() < 2) {
+            /*if(!checkHealth()) {
+                setColor(Color.MAGENTA);
+                if (rand.nextDouble() <= INFECTED_PROBABILITY) {
+                    isInfected();
+                    setColor(Color.GREEN);
+                }
+            }
+            if (checkHealth() && getAge() >= 10) {
+                 setNextState(false);
+            }
+            else */if (neighbours.size() < 2) {
                  setNextState(false);
              }
-             else if (neighbours.size() == 2 || neighbours.size() == 3) {
+            else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
              }
-             else if(neighbours.size() > 3) {
+            else if(neighbours.size() > 3) {
                  setNextState(false);
              }
-         } else {
+          else {
              if (neighbours.size() == 3) {
                  setNextState(true);
              }
          }
     }
 }
+}
+
 

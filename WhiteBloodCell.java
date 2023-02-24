@@ -34,8 +34,9 @@ public class WhiteBloodCell extends Cell {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
          incrementAge();
          setNextState(false);
-         switchColor();
+         
          if (isAlive()) {
+             switchColor();
              if (neighbours.size() < 2) {
                  setNextState(false);
              }

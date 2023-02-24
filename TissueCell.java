@@ -37,7 +37,12 @@ public class TissueCell extends Cell {
          incrementAge();
          switchColor();
          if (isAlive() && getAge() <= 80) {
-             if (neighbours.size() < 2) {
+             /*for(Cell neighbour : neighbours) {
+                 if(neighbour.checkHealth()) {
+                 isInfected();
+                 }
+            }*/
+            if (neighbours.size() < 2) {
                  setNextState(false);
              }
              else if (neighbours.size() == 2 || neighbours.size() == 3) {
@@ -46,11 +51,12 @@ public class TissueCell extends Cell {
              else if(neighbours.size() > 3) {
                  setNextState(false);
              }
-         } else {
+          else {
              if (neighbours.size() == 3) {
                  setNextState(true);
              }
          }
+    }
     }
     
     private void switchColor() {

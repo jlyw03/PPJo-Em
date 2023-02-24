@@ -20,13 +20,13 @@ public class Simulator {
     private static final int DEFAULT_DEPTH = 80;
 
     // The probability that a Mycoplasma is alive
-    private static final double MYCOPLASMA_ALIVE_PROB = 0.02;
+    private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
     
     // The probability that a ColourCell is alive 
-    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.05;
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.3;
     
     // The probability that a MatureCell is alive
-    private static final double TISSUECELL_ALIVE_PROB = 0.08;
+    private static final double TISSUECELL_ALIVE_PROB = 0.5;
 
     // List of cells in the field.
     private List<Cell> cells;
@@ -113,10 +113,6 @@ public class Simulator {
                         cell.act();
                         cell.updateState();
                 } 
-                else {
-                    int numOfNeighbours = field.getLivingNeighbours(location).size();
-                    determineCell(numOfNeighbours, location);
-                }
             }
         }
             
@@ -150,25 +146,38 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
           Location location = new Location(row, col);
-          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+        if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
             Mycoplasma myco = new Mycoplasma(field, location);
             cells.add(myco);
-          }
-          else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
+        }
+        else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
             WhiteBloodCell color = new WhiteBloodCell(field, location);
             cells.add(color);
-          }
-          else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
+        }
+        else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
             TissueCell mature = new TissueCell(field, location);
             cells.add(mature);
-          }
-          else{
-            Mycoplasma dead = new Mycoplasma(field, location);
-            dead.setDead();
-            cells.add(dead);
-          }
+        }
+        else{
+            int ooga = rand.nextInt(3);
+            if (ooga == 0) {
+                Mycoplasma myco = new Mycoplasma(field, location);
+                myco.setDead();
+                cells.add(myco);
+            } 
+            else if (ooga == 1) {
+                WhiteBloodCell white = new WhiteBloodCell(field, location);
+                white.setDead();
+                cells.add(white);
+            } 
+            else if (ooga == 2) {
+                TissueCell tissue = new TissueCell(field, location);
+                tissue.setDead();
+                cells.add(tissue);
+            }
         }
       }
+    }
     }
 
     /**
@@ -181,22 +190,6 @@ public class Simulator {
         }
         catch (InterruptedException ie) {
             // wake up
-        }
-    }
-    
-     /**
-     * Checks if conditions of the cell to determine which cell should come
-     * alive in this location
-     * @param Location location
-     * @return Cell type
-     */
-    private void determineCell(int numOfNeighbours, Location location) { 
-        if (numOfNeighbours == 3) {
-            new Mycoplasma(field, location);
-        } else if (numOfNeighbours == 5) {
-            new WhiteBloodCell(field, location);
-        } else if (numOfNeighbours == 4) {
-            new TissueCell(field, location);
         }
     }
 
