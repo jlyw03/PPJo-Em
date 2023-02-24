@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=RedBloodCell
+comment0.text=\r\n\ Simplest\ form\ of\ life.\r\n\r\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\r\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\r\n\ @version\ 2022.02.28\r\n
+comment1.params=field\ location
+comment1.target=RedBloodCell(Field,\ Location)
+comment1.text=\r\n\ Create\ a\ new\ RedBloodCell.\r\n\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ This\ is\ how\ the\ RedBloodCell\ decides\ if\ it's\ alive\ or\ not\r\n
+numComments=3

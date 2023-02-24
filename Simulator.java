@@ -23,10 +23,10 @@ public class Simulator {
     private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
     
     // The probability that a ColourCell is alive 
-    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.2;
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.15;
     
     // The probability that a MatureCell is alive
-    private static final double TISSUECELL_ALIVE_PROB = 0.17;
+    private static final double TISSUECELL_ALIVE_PROB = 0.25;
 
     // The current state of the field.
     private Field field;
@@ -146,14 +146,15 @@ public class Simulator {
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 Location location = new Location(row, col);
-                if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {   
-                    Mycoplasma myco = new Mycoplasma(field, location);
+                double randDouble = rand.nextDouble();
+                if (randDouble <= MYCOPLASMA_ALIVE_PROB) {   
+                    new Mycoplasma(field, location);
                 } 
-                else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB) {
-                    WhiteBloodCell color = new WhiteBloodCell(field, location);
+                else if (randDouble > MYCOPLASMA_ALIVE_PROB && randDouble <= WHITEBLOODCELL_ALIVE_PROB) {
+                    new WhiteBloodCell(field, location);
                 }
-                else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB) {
-                    TissueCell mature = new TissueCell(field, location);
+                else if (randDouble > WHITEBLOODCELL_ALIVE_PROB && rand.nextDouble() <= TISSUECELL_ALIVE_PROB) {
+                    new TissueCell(field, location);
                 }
 
             }
@@ -183,7 +184,7 @@ public class Simulator {
     private void determineCell(int numOfNeighbours, Location location) { 
         if (numOfNeighbours == 3) {
             new Mycoplasma(field, location);
-        } else if (numOfNeighbours == 5) {
+        } else if (numOfNeighbours == 6) {
             new WhiteBloodCell(field, location);
         } else if (numOfNeighbours == 4) {
             new TissueCell(field, location);

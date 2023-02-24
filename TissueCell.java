@@ -4,9 +4,6 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: MatureCell are one of the simplest forms of life.  A type of
- * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
- * about 14,000 genes.
  *
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @modifiedBy Jolene Yan Wen Lim, Soo Zhi Xin
@@ -36,11 +33,11 @@ public class TissueCell extends Cell {
         incrementAge();
         switchColor();
         if (isAlive()) {
-            if (getAge() >= 80) {
-                 setNextState(false);
+            if (neighbours.size() == 4 && neighbours.size() == 5 && getAge() <= 80) {
+                setNextState(true);
             } 
             else {
-                 setNextState(true);
+                setNextState(false);
             }
         }
     }

@@ -10,22 +10,22 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class Mycoplasma extends Cell {
+public class Oxygen extends Cell {
     
     /**
-     * Create a new Mycoplasma.
+     * Create a new Oxygen.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Mycoplasma(Field field, Location location) {
+    public Oxygen(Field field, Location location) {
         super(field, location);
-        setColor(Color.GREEN);
+        setColor(Color.CYAN);
         setAge(0);
     }
 
     /**
-     * This is how the Mycoplasma decides if it's alive or not
+     * This is how the Oxygen decides if it's alive or not
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());

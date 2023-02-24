@@ -4,9 +4,6 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: ColourCell are one of the simplest forms of life.  A type of
- * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
- * about 14,000 genes.
  *
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @modifiedBy Jolene Yan Wen Lim, Soo Zhi Xin
@@ -36,17 +33,13 @@ public class WhiteBloodCell extends Cell {
         switchColor();
         setNextState(false);
         if (isAlive()) {
-             if (neighbours.size() < 2) {
+             if (neighbours.size() == 5 && neighbours.size() == 6 && getAge() <= 30) {
+                 setNextState(true);
+             }
+             else {
                  setNextState(false);
              }
-             else if (neighbours.size() > 3) {
-                 setNextState(true);
-             } 
-          } else {
-                if (neighbours.size() == 3) {
-                 setNextState(true);
-                }
-             }
+        }
     }
     
     /**
