@@ -115,12 +115,6 @@ public class Simulator {
                 } 
             }
         }
-            
-        for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                Cell cell = field.getObjectAt(row, col);
-            }
-        }
 
         view.showStatus(generation, field);
     }
