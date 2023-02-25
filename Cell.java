@@ -155,7 +155,17 @@ public abstract class Cell {
         setColor(Color.GREEN);
         if(getAge()>=20) {
             setNextState(false);
+            resetAge();
         }
+    }
+    
+    /**
+     * Makes infected cells recover
+     */
+    protected void recoverInfected()
+    {
+        diseased = false;
+        setColor(Color.BLUE);
     }
     
     /**
@@ -163,6 +173,10 @@ public abstract class Cell {
      */
     protected boolean checkHealth()
     {
-        return diseased;
+        if (diseased) {
+            return true;
+        } else {
+            return false;
+        }
     } 
 }

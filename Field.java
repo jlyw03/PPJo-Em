@@ -220,4 +220,18 @@ public class Field {
         }
         return false;
     }
+    
+    /**
+     * Checks for the presence of Red Blood Cell in neighbours
+     * 
+     * @return True if Mycoplasma is in neighbours
+     */
+    public boolean MycoplasmaPresent(List<Cell> neighbours) {
+        for (Cell cell : neighbours) {
+            if (cell.getClass().getName().equals("Mycoplasma")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

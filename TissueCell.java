@@ -14,9 +14,10 @@ import java.util.Random;
  */
  
 public class TissueCell extends Cell {
-
+    private static final double RECOVER_PROBABILITY = 0.2;
+    //private int HealthLevel = 5;
     /**
-     * Create a new MaturingCell.
+     * Create a new TissueCell.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -28,32 +29,29 @@ public class TissueCell extends Cell {
     }
 
     /**
-     * This is how the MaturingCell decides if it's alive or not
+     * This is how the TissueCell decides if it's alive or not
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
-        if (isAlive() && getAge() <= 80) {
+        Random rand = Randomizer.getRandom();
+        if (isAlive()) {
             incrementAge();
             switchColor();
              for(Cell neighbour : neighbours) {
                  if(neighbour.checkHealth()) {
-                 isInfected();
+                     isInfected();
                  }
             }
-            if (neighbours.size() < 2) {
-                setNextState(false);
-                resetAge();
-            }
-            else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                setNextState(true);
-            }
-            else if(neighbours.size() > 3) {
-                setNextState(false);
+            if(checkHealth()) {
+                if(rand.nextDouble() <= RECOVER_PROBABILITY && getField().WBCpresent(neighbours)) {
+                    recoverInfected();
+                    setNextState(true);
+                } 
             }
         }
         else {
-            if (neighbours.size() == 3) {
+            if (neighbours.size() == 4) {
                  setNextState(true);
             }
         }
@@ -61,7 +59,7 @@ public class TissueCell extends Cell {
     
     private void switchColor() {
         if (getAge() >= 40) {
-            setColor(Color.GRAY);
+            setColor(Color.DARK_GRAY);
         }
     }
 }

@@ -41,9 +41,6 @@ public class Mycoplasma extends Cell {
                     isInfected();
                 }
             }
-            /*if (checkHealth() && getAge() >= 20) {
-                 setNextState(false);*/
-            
             else if (neighbours.size() < 2) {
                  setNextState(false);
                  resetAge();

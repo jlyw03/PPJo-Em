@@ -16,7 +16,7 @@ import java.util.Random;
 public class WhiteBloodCell extends Cell {
 
     /**
-     * Create a new ColourCell.
+     * Create a new WhiteBloodCell.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -27,7 +27,7 @@ public class WhiteBloodCell extends Cell {
     }
 
     /**
-     * This is how the ColourCell decides if it's alive or not
+     * This is how the WhiteBloodCell decides if it's alive or not
      */
     public void act() {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
