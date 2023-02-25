@@ -25,7 +25,6 @@ public class Mycoplasma extends Cell {
     public Mycoplasma(Field field, Location location) {
         super(field, location);
         setColor(Color.MAGENTA);
-        setAge(0);
     }
 
     /**
@@ -49,12 +48,14 @@ public class Mycoplasma extends Cell {
             }
             else */if (neighbours.size() < 2) {
                  setNextState(false);
+                 resetAge();
             }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
             }
             else if(neighbours.size() > 3) {
                  setNextState(false);
+                 resetAge();
             }
         }
         else {

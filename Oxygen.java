@@ -25,7 +25,6 @@ public class Oxygen extends Cell {
     public Oxygen(Field field, Location location) {
         super(field, location);
         setColor(Color.CYAN);
-        setAge(0);
     }
 
     /**
@@ -33,28 +32,20 @@ public class Oxygen extends Cell {
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        incrementAge();
         setNextState(false);
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
-            /*if(!checkHealth()) {
-                setColor(Color.MAGENTA);
-                if (rand.nextDouble() <= INFECTED_PROBABILITY) {
-                    isInfected();
-                    setColor(Color.GREEN);
-                }
-            }
-            if (checkHealth() && getAge() >= 10) {
+            incrementAge();
+            if (neighbours.size() < 2) {
                  setNextState(false);
-            }
-            else */if (neighbours.size() < 2) {
-                 setNextState(false);
+                 resetAge();
             }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
             }
             else if(neighbours.size() > 3) {
                  setNextState(false);
+                 resetAge();
             }
         }
         else {

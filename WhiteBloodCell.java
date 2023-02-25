@@ -24,7 +24,6 @@ public class WhiteBloodCell extends Cell {
     public WhiteBloodCell(Field field, Location location) {
         super(field, location);
         setColor(Color.YELLOW);
-        setAge(0);
     }
 
     /**
@@ -32,19 +31,21 @@ public class WhiteBloodCell extends Cell {
      */
     public void act() {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-         incrementAge();
          setNextState(false);
          
          if (isAlive()) {
+             incrementAge();
              switchColor();
              if (neighbours.size() < 2) {
                  setNextState(false);
+                 resetAge();
              }
              else if (neighbours.size() == 2 || neighbours.size() == 3) {
                  setNextState(true);
              }
              else if (neighbours.size() > 3) {
                  setNextState(false);
+                 resetAge();
              }
          } else {
              if (neighbours.size() == 3) {
