@@ -11,6 +11,8 @@ import java.util.Random;
  */
 
 public class RedBloodCell extends Cell {
+    private int OxygenLevel = 5;
+    
     /**
      * Create a new RedBloodCell.
      *
@@ -31,16 +33,18 @@ public class RedBloodCell extends Cell {
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
-            if (neighbours.size() < 2) {
-                 setNextState(false);
-                 resetAge();
+            if (getField().OxygenPresent(neighbours)){
+                OxygenLevel++;
+            } else {
+                OxygenLevel--;
             }
-            else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                 setNextState(true);
+            
+            if (OxygenLevel > 0 && getAge() < 20) {
+                setNextState(true);
             }
-            else if(neighbours.size() > 3) {
-                 setNextState(false);
-                 resetAge();
+            else {
+                setNextState(false);
+                resetAge();
             }
         }
         else {
