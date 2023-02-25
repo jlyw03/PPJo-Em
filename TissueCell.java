@@ -16,7 +16,7 @@ import java.util.Random;
 public class TissueCell extends Cell {
 
     /**
-     * Create a new MaturingCell.
+     * Create a new TissueCell.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -28,7 +28,7 @@ public class TissueCell extends Cell {
     }
 
     /**
-     * This is how the MaturingCell decides if it's alive or not
+     * This is how the TissueCell decides if it's alive or not
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
@@ -59,6 +59,9 @@ public class TissueCell extends Cell {
         }
     }
     
+    /**
+     * Checks the age of this cell and set its color to gray if it is aged 40 or over
+     */
     private void switchColor() {
         if (getAge() >= 40) {
             setColor(Color.GRAY);
