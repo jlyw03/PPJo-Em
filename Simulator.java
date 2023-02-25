@@ -22,11 +22,17 @@ public class Simulator {
     // The probability that a Mycoplasma is alive
     private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
     
-    // The probability that a ColourCell is alive 
+    // The probability that a White Blood Cell is alive 
     private static final double WHITEBLOODCELL_ALIVE_PROB = 0.3;
     
-    // The probability that a MatureCell is alive
+    // The probability that a Tissue Cell is alive
     private static final double TISSUECELL_ALIVE_PROB = 0.5;
+    
+    // The probability that a Red Blood Cell is alive
+    private static final double REDBLOODCELL_ALIVE_PROB = 0.6;
+    
+    // The probability that a Oxygen Cell is alive
+    private static final double OXYGEN_ALIVE_PROB = 0.7;
 
     // List of cells in the field.
     private List<Cell> cells;
@@ -105,15 +111,13 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-         for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                Location location = new Location(row, col);
-                Cell cell = field.getObjectAt(row, col);
-                if (cell != null) {
-                        cell.act();
-                        cell.updateState();
-                } 
-            }
+        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+            Cell cell = it.next();
+            cell.act();
+        }
+
+        for (Cell cell : cells) {
+          cell.updateState();
         }
 
         view.showStatus(generation, field);
@@ -140,20 +144,29 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
           Location location = new Location(row, col);
-          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+          double randDouble = rand.nextDouble();
+          if (randDouble <= MYCOPLASMA_ALIVE_PROB) {
             Mycoplasma myco = new Mycoplasma(field, location);
             cells.add(myco);
           }
-          else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
-            WhiteBloodCell color = new WhiteBloodCell(field, location);
-            cells.add(color);
+          else if (randDouble <= WHITEBLOODCELL_ALIVE_PROB){
+            WhiteBloodCell white = new WhiteBloodCell(field, location);
+            cells.add(white);
           }
-          else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
-            TissueCell mature = new TissueCell(field, location);
-            cells.add(mature);
+          else if (randDouble <= TISSUECELL_ALIVE_PROB){
+            TissueCell tissue = new TissueCell(field, location);
+            cells.add(tissue);
+          }
+          else if (randDouble <= REDBLOODCELL_ALIVE_PROB){
+            RedBloodCell red = new RedBloodCell(field, location);
+            cells.add(red);
+          }
+          else if (randDouble <= OXYGEN_ALIVE_PROB){
+            Oxygen oxygen = new Oxygen(field, location);
+            cells.add(oxygen);
           }
           else{
-            int ooga = rand.nextInt(3);
+            int ooga = rand.nextInt(5);
             if (ooga == 0) {
                 Mycoplasma myco = new Mycoplasma(field, location);
                 myco.setDead();
@@ -168,6 +181,16 @@ public class Simulator {
                 TissueCell tissue = new TissueCell(field, location);
                 tissue.setDead();
                 cells.add(tissue);
+            }
+            else if (ooga == 3) {
+                RedBloodCell red = new RedBloodCell(field, location);
+                red.setDead();
+                cells.add(red);
+            }
+            else if (ooga == 4) {
+                Oxygen oxygen = new Oxygen(field, location);
+                oxygen.setDead();
+                cells.add(oxygen);
             }
           } 
         }
