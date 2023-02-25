@@ -32,20 +32,18 @@ public class Mycoplasma extends Cell {
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        incrementAge();
         setNextState(false);
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
+            incrementAge();
             if(!checkHealth()) {
-                //setColor(Color.MAGENTA);
                 if (rand.nextDouble() <= INFECTED_PROBABILITY) {
                     isInfected();
-                    setColor(Color.GREEN);
                 }
             }
-            if (checkHealth() && getAge() >= 20) {
-                 setNextState(false);
-            }
+            /*if (checkHealth() && getAge() >= 20) {
+                 setNextState(false);*/
+            
             else if (neighbours.size() < 2) {
                  setNextState(false);
                  resetAge();

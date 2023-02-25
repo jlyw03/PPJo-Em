@@ -152,6 +152,10 @@ public abstract class Cell {
     protected void isInfected()
     {
         diseased = true;
+        setColor(Color.GREEN);
+        if(getAge()>=20) {
+            setNextState(false);
+        }
     }
     
     /**
