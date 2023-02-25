@@ -30,7 +30,6 @@ public class RedBloodCell extends Cell {
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
-        Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
             if (getField().OxygenPresent(neighbours)){

@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Simplest form of life.
+ * Another form of life.
  *
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @modifiedBy Jolene Yan Wen Lim, Soo Zhi Xin
@@ -28,7 +28,6 @@ public class Oxygen extends Cell {
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
-        Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
             if(getField().RBCpresent(neighbours)) {

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=TissueCell
-comment0.text=\n\ Simplest\ form\ of\ life.\n\ Fun\ Fact\:\ MaturingCell\ are\ one\ of\ the\ simplest\ forms\ of\ life.\ \ A\ type\ of\n\ bacteria,\ they\ only\ have\ 500-1000\ genes\!\ For\ comparison,\ fruit\ flies\ have\n\ about\ 14,000\ genes.\n\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\n\ @version\ 2022.02.28\n
+comment0.text=\n\ Another\ form\ of\ life.\n\ \n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\n\ @version\ 2022.02.28\n
 comment1.params=field\ location
 comment1.target=TissueCell(Field,\ Location)
 comment1.text=\n\ Create\ a\ new\ TissueCell.\n\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ location\ within\ the\ field.\n
@@ -9,4 +9,5 @@ comment2.target=void\ act()
 comment2.text=\n\ This\ is\ how\ the\ TissueCell\ decides\ if\ it's\ alive\ or\ not\n
 comment3.params=
 comment3.target=void\ switchColor()
+comment3.text=\n\ Checks\ the\ age\ of\ this\ cell\ and\ set\ its\ color\ to\ gray\ if\ it\ is\ aged\ 40\ or\ over\n
 numComments=4
