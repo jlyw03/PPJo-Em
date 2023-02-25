@@ -140,19 +140,19 @@ public class Simulator {
       for (int row = 0; row < field.getDepth(); row++) {
         for (int col = 0; col < field.getWidth(); col++) {
           Location location = new Location(row, col);
-        if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
+          if (rand.nextDouble() <= MYCOPLASMA_ALIVE_PROB) {
             Mycoplasma myco = new Mycoplasma(field, location);
             cells.add(myco);
-        }
-        else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
+          }
+          else if (rand.nextDouble() <= WHITEBLOODCELL_ALIVE_PROB){
             WhiteBloodCell color = new WhiteBloodCell(field, location);
             cells.add(color);
-        }
-        else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
+          }
+          else if (rand.nextDouble() <= TISSUECELL_ALIVE_PROB){
             TissueCell mature = new TissueCell(field, location);
             cells.add(mature);
-        }
-        else{
+          }
+          else{
             int ooga = rand.nextInt(3);
             if (ooga == 0) {
                 Mycoplasma myco = new Mycoplasma(field, location);
@@ -169,9 +169,9 @@ public class Simulator {
                 tissue.setDead();
                 cells.add(tissue);
             }
+          } 
         }
       }
-    }
     }
 
     /**
