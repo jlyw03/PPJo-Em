@@ -37,17 +37,17 @@ public class Mycoplasma extends Cell {
         setNextState(false);
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
-            /*if(!checkHealth()) {
-                setColor(Color.MAGENTA);
+            if(!checkHealth()) {
+                //setColor(Color.MAGENTA);
                 if (rand.nextDouble() <= INFECTED_PROBABILITY) {
                     isInfected();
                     setColor(Color.GREEN);
                 }
             }
-            if (checkHealth() && getAge() >= 10) {
+            if (checkHealth() && getAge() >= 20) {
                  setNextState(false);
             }
-            else */if (neighbours.size() < 2) {
+            else if (neighbours.size() < 2) {
                  setNextState(false);
             }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {

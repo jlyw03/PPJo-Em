@@ -105,15 +105,13 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-         for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                Location location = new Location(row, col);
-                Cell cell = field.getObjectAt(row, col);
-                if (cell != null) {
-                        cell.act();
-                        cell.updateState();
-                } 
-            }
+        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+            Cell cell = it.next();
+            cell.act();
+        }
+
+        for (Cell cell : cells) {
+          cell.updateState();
         }
 
         view.showStatus(generation, field);
