@@ -36,21 +36,11 @@ public class Oxygen extends Cell {
                 resetAge();
             }
             else {
-                if(neighbours.size() > 6) {
-                    setNextState(false);
-                    resetAge();
-                }
-                else if (neighbours.size() < 2) {
-                    setNextState(false);
-                    resetAge();
-                }
-                else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                    setNextState(true);
-                }
+                setNextState(true);
             }
         }
         else {
-            if (neighbours.size() == 3) {
+            if (neighbours.size() == 4) {
                 setNextState(true);
             }
         }
