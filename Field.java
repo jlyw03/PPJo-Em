@@ -178,4 +178,18 @@ public class Field {
     public int getWidth() {
         return width;
     }
+    
+    /**
+     * Checks for the presence of Red Blood Cell in neighbours
+     * 
+     * @return True if Red Blood Cell is in neighbours
+     */
+    public boolean RBCpresent(List<Cell> neighbours) {
+        for (Cell cell : neighbours) {
+            if (cell.getClass().getName().equals("RedBloodCell")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

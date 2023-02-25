@@ -4,9 +4,6 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: RedBloodCell are one of the simplest forms of life.  A type of
- * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
- * about 14,000 genes.
  *
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @modifiedBy Jolene Yan Wen Lim, Soo Zhi Xin
@@ -14,8 +11,6 @@ import java.util.Random;
  */
 
 public class RedBloodCell extends Cell {
-    private static final double INFECTED_PROBABILITY = 0.04;
-    
     /**
      * Create a new RedBloodCell.
      *

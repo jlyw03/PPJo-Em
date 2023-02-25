@@ -4,9 +4,6 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: Oxygen are one of the simplest forms of life.  A type of
- * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
- * about 14,000 genes.
  *
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @modifiedBy Jolene Yan Wen Lim, Soo Zhi Xin
@@ -14,8 +11,6 @@ import java.util.Random;
  */
 
 public class Oxygen extends Cell {
-    private static final double INFECTED_PROBABILITY = 0.04;
-    
     /**
      * Create a new Oxygen.
      *
@@ -36,16 +31,22 @@ public class Oxygen extends Cell {
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
-            if (neighbours.size() < 2) {
-                 setNextState(false);
-                 resetAge();
+            if(getField().RBCpresent(neighbours)) {
+                setNextState(false);
+                resetAge();
             }
-            else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                 setNextState(true);
-            }
-            else if(neighbours.size() > 3) {
-                 setNextState(false);
-                 resetAge();
+            else {
+                if(neighbours.size() > 6) {
+                    setNextState(false);
+                    resetAge();
+                }
+                else if (neighbours.size() < 2) {
+                    setNextState(false);
+                    resetAge();
+                }
+                else if (neighbours.size() == 2 || neighbours.size() == 3) {
+                    setNextState(true);
+                }
             }
         }
         else {
