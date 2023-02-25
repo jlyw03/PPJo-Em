@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Simplest form of life.
- * Fun Fact: Mycoplasma are one of the simplest forms of life.  A type of
+ * Fun Fact: Oxygen are one of the simplest forms of life.  A type of
  * bacteria, they only have 500-1000 genes! For comparison, fruit flies have
  * about 14,000 genes.
  *
@@ -13,40 +13,30 @@ import java.util.Random;
  * @version 2022.02.28
  */
 
-public class Mycoplasma extends Cell {
+public class Oxygen extends Cell {
     private static final double INFECTED_PROBABILITY = 0.04;
     
     /**
-     * Create a new Mycoplasma.
+     * Create a new Oxygen.
      *
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Mycoplasma(Field field, Location location) {
+    public Oxygen(Field field, Location location) {
         super(field, location);
-        setColor(Color.MAGENTA);
+        setColor(Color.CYAN);
     }
 
     /**
-     * This is how the Mycoplasma decides if it's alive or not
+     * This is how the Oxygen decides if it's alive or not
      */
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-        incrementAge();
         setNextState(false);
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
-            if(!checkHealth()) {
-                //setColor(Color.MAGENTA);
-                if (rand.nextDouble() <= INFECTED_PROBABILITY) {
-                    isInfected();
-                    setColor(Color.GREEN);
-                }
-            }
-            if (checkHealth() && getAge() >= 20) {
-                 setNextState(false);
-            }
-            else if (neighbours.size() < 2) {
+            incrementAge();
+            if (neighbours.size() < 2) {
                  setNextState(false);
                  resetAge();
             }

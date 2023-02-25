@@ -25,7 +25,7 @@ public abstract class Cell {
     private Color color = Color.white;
     
     //The cell's age 
-    private int age;
+    private int age = 0;
     
     //The cell's disease state
     private boolean diseased;
@@ -119,7 +119,7 @@ public abstract class Cell {
         return field;
     }
     
-      /**
+    /**
      * Return the cell's age 
      * @return The cell's age
      */
@@ -129,13 +129,13 @@ public abstract class Cell {
     }
     
     /**
-     * Sets the cell's age 
+     * Sets the cell's age to 0
      * 
      * @param int Age
      */
-    protected void setAge(int age)
+    protected void resetAge()
     {
-        age = age; 
+        age = 0; 
     }
     
     /**

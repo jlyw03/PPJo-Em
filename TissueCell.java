@@ -25,18 +25,17 @@ public class TissueCell extends Cell {
     public TissueCell(Field field, Location location) {
         super(field, location);
         setColor(Color.BLUE);
-        setAge(0);
     }
 
     /**
      * This is how the MaturingCell decides if it's alive or not
      */
     public void act() {
-         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
-         setNextState(false);
-         incrementAge();
-         switchColor();
+        List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
+        setNextState(false);
         if (isAlive() && getAge() <= 80) {
+            incrementAge();
+            switchColor();
              /*for(Cell neighbour : neighbours) {
                  if(neighbour.checkHealth()) {
                  isInfected();
@@ -44,12 +43,14 @@ public class TissueCell extends Cell {
             }*/
             if (neighbours.size() < 2) {
                 setNextState(false);
+                resetAge();
             }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {
                 setNextState(true);
             }
             else if(neighbours.size() > 3) {
                 setNextState(false);
+                resetAge();
             }
         }
         else {
