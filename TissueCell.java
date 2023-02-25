@@ -56,7 +56,7 @@ public class TissueCell extends Cell {
                  setNextState(true);
              }
          }
-    }
+         }
     }
     
     private void switchColor() {

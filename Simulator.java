@@ -153,18 +153,18 @@ public class Simulator {
             cells.add(mature);
         }
         else{
-            int ooga = rand.nextInt(3);
-            if (ooga == 0) {
+            int generator = rand.nextInt(3);
+            if (generator == 0) {
                 Mycoplasma myco = new Mycoplasma(field, location);
                 myco.setDead();
                 cells.add(myco);
             } 
-            else if (ooga == 1) {
+            else if (generator == 1) {
                 WhiteBloodCell white = new WhiteBloodCell(field, location);
                 white.setDead();
                 cells.add(white);
             } 
-            else if (ooga == 2) {
+            else if (generator == 2) {
                 TissueCell tissue = new TissueCell(field, location);
                 tissue.setDead();
                 cells.add(tissue);
