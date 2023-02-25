@@ -20,13 +20,13 @@ public class Simulator {
     private static final int DEFAULT_DEPTH = 80;
 
     // The probability that a Mycoplasma is alive
-    private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
+    private static final double MYCOPLASMA_ALIVE_PROB = 0.05;
     
     // The probability that a ColourCell is alive 
-    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.3;
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.1;
     
     // The probability that a MatureCell is alive
-    private static final double TISSUECELL_ALIVE_PROB = 0.5;
+    private static final double TISSUECELL_ALIVE_PROB = 0.12;
 
     // List of cells in the field.
     private List<Cell> cells;
@@ -105,15 +105,13 @@ public class Simulator {
      */
     public void simOneGeneration() {
         generation++;
-         for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                Location location = new Location(row, col);
-                Cell cell = field.getObjectAt(row, col);
-                if (cell != null) {
-                        cell.act();
-                        cell.updateState();
-                } 
-            }
+        for (Iterator<Cell> it = cells.iterator(); it.hasNext(); ) {
+            Cell cell = it.next();
+            cell.act();
+        }
+
+        for (Cell cell : cells) {
+          cell.updateState();
         }
 
         view.showStatus(generation, field);

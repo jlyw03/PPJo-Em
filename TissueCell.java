@@ -36,7 +36,7 @@ public class TissueCell extends Cell {
          setNextState(false);
          incrementAge();
          switchColor();
-         if (isAlive() && getAge() <= 80) {
+         if (isAlive()) {
              /*for(Cell neighbour : neighbours) {
                  if(neighbour.checkHealth()) {
                  isInfected();
