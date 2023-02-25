@@ -57,6 +57,9 @@ public class TissueCell extends Cell {
         }
     }
     
+    /**
+     * Checks the age of this cell and set its color to gray if it is aged 40 or over
+     */
     private void switchColor() {
         if (getAge() >= 40) {
             setColor(Color.DARK_GRAY);
