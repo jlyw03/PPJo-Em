@@ -14,8 +14,6 @@ import java.util.Random;
  */
 
 public class Mycoplasma extends Cell {
-    private static final double INFECTED_PROBABILITY = 0.04;
-    private static final double RECOVER_PROBABILITY = 0.2;
     
     /**
      * Create a new Mycoplasma.
@@ -26,6 +24,7 @@ public class Mycoplasma extends Cell {
     public Mycoplasma(Field field, Location location) {
         super(field, location);
         setColor(Color.MAGENTA);
+        isInfected();
     }
 
     /**
@@ -37,40 +36,17 @@ public class Mycoplasma extends Cell {
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
-            if(!checkHealth()) {
-                if (rand.nextDouble() <= INFECTED_PROBABILITY) {
-                    isInfected();
-                    setColor(Color.GREEN);
-                    if (getAge() < 20) {
-                        setNextState(true);
-                    } else {
-                        setNextState(false);
-                    }
-                }
-                else {
-                    if (neighbours.size() < 2) {
-                        setNextState(false);
-                    }
-                    else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                        setNextState(true);
-                    }
-                    else if(neighbours.size() > 3) {
-                        setNextState(false);
-                    }
-                }
+            if (neighbours.size() < 2) {
+                setNextState(false);
             }
-            else {
-                if (getAge() < 20) {
-                    setNextState(true);
-                } 
-                else if (getField().WBCpresent(neighbours) && rand.nextDouble() <= RECOVER_PROBABILITY) {
-                    recoverInfected();
-                    setColor(Color.MAGENTA);
-                    setNextState(true);
-                }
-                else {
-                    setNextState(false);
-                }
+            else if (neighbours.size() == 2 || neighbours.size() == 3) {
+                setNextState(true);
+            }
+            else if (neighbours.size() > 3) {
+                setNextState(false);
+            }
+            else if (getField().WBCpresent(neighbours)) {
+                setNextState(false);
             }
         }
         else {

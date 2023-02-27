@@ -73,7 +73,6 @@ public abstract class Cell {
       nextAlive = value;
       if (value == false) {
           resetAge();
-          
       }
     }
 
@@ -164,7 +163,6 @@ public abstract class Cell {
     protected void recoverInfected()
     {
         diseased = false;
-        setColor(Color.BLUE);
     }
     
     /**
