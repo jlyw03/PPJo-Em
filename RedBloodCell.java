@@ -43,7 +43,6 @@ public class RedBloodCell extends Cell {
             }
             else {
                 setNextState(false);
-                resetAge();
             }
         }
         else {
