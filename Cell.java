@@ -71,6 +71,9 @@ public abstract class Cell {
      */
     public void setNextState(boolean value) {
       nextAlive = value;
+      if (value == false) {
+          resetAge();
+      }
     }
 
     /**
@@ -152,11 +155,6 @@ public abstract class Cell {
     protected void isInfected()
     {
         diseased = true;
-        setColor(Color.GREEN);
-        if(getAge()>=20) {
-            setNextState(false);
-            resetAge();
-        }
     }
     
     /**
@@ -165,18 +163,15 @@ public abstract class Cell {
     protected void recoverInfected()
     {
         diseased = false;
-        setColor(Color.BLUE);
     }
     
     /**
      * Return's cell's infected state
+     * 
+     * @return Boolean True if this cell is infected
      */
     protected boolean checkHealth()
     {
-        if (diseased) {
-            return true;
-        } else {
-            return false;
-        }
+        return diseased;
     } 
 }

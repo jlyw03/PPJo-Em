@@ -32,7 +32,6 @@ public class Oxygen extends Cell {
             incrementAge();
             if(getField().RBCpresent(neighbours)) {
                 setNextState(false);
-                resetAge();
             }
             else {
                 setNextState(true);

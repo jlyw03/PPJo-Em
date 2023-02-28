@@ -32,13 +32,13 @@ public class RedBloodCell extends Cell {
         setNextState(false);
         if (isAlive()) {
             incrementAge();
-            if (getField().OxygenPresent(neighbours)){
+            if (getField().oxygenPresent(neighbours)){
                 OxygenLevel++;
             } else {
                 OxygenLevel--;
             }
             
-            if (OxygenLevel > 0 && getAge() < 20) {
+            if (OxygenLevel > 0 && getAge() <= 20) {
                 setNextState(true);
             }
             else {

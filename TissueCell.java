@@ -12,7 +12,8 @@ import java.util.Random;
  
 public class TissueCell extends Cell {
     private static final double RECOVER_PROBABILITY = 0.2;
-    //private int HealthLevel = 5;
+    private static final double INFECTED_PROBABILITY = 0.04;
+    
     /**
      * Create a new TissueCell.
      *
@@ -34,17 +35,32 @@ public class TissueCell extends Cell {
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
-            switchColor();
-             for(Cell neighbour : neighbours) {
-                 if(neighbour.checkHealth()) {
-                     isInfected();
-                 }
-            }
             if(checkHealth()) {
-                if(rand.nextDouble() <= RECOVER_PROBABILITY && getField().WBCpresent(neighbours)) {
-                    recoverInfected();
+                if (getAge() < 20) {
                     setNextState(true);
                 } 
+                else if (getField().WBCpresent(neighbours) && rand.nextDouble() <= RECOVER_PROBABILITY) {
+                    recoverInfected();
+                    setColor(Color.BLUE);
+                    setNextState(true);
+                }
+                else {
+                    setNextState(false);
+                    recoverInfected();
+                }
+            }
+            else {
+                switchColor();
+                if (getField().infectedPresent(neighbours) && rand.nextDouble() <= INFECTED_PROBABILITY) {
+                    isInfected();
+                    setColor(Color.GREEN);
+                    if (getAge() < 20) {
+                        setNextState(true);
+                    } else {
+                        setNextState(false);
+                        recoverInfected();
+                    }
+                }
             }
         }
         else {

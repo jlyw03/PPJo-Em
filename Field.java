@@ -210,9 +210,9 @@ public class Field {
     /**
      * Checks for the presence of Red Blood Cell in neighbours
      * 
-     * @return True if Red Blood Cell is in neighbours
+     * @return Boolean True if Red Blood Cell is in neighbours
      */
-    public boolean OxygenPresent(List<Cell> neighbours) {
+    public boolean oxygenPresent(List<Cell> neighbours) {
         for (Cell cell : neighbours) {
             if (cell.getClass().getName().equals("Oxygen")) {
                 return true;
@@ -222,13 +222,13 @@ public class Field {
     }
     
     /**
-     * Checks for the presence of Red Blood Cell in neighbours
+     * Checks for any infected cells in neighbours
      * 
-     * @return True if Mycoplasma is in neighbours
+     * @return Boolean True if there are infected cell(s) in neighbours
      */
-    public boolean MycoplasmaPresent(List<Cell> neighbours) {
+    public boolean infectedPresent(List<Cell> neighbours) {
         for (Cell cell : neighbours) {
-            if (cell.getClass().getName().equals("Mycoplasma")) {
+            if (cell.checkHealth()) {
                 return true;
             }
         }

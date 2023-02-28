@@ -14,7 +14,6 @@ import java.util.Random;
  */
 
 public class Mycoplasma extends Cell {
-    private static final double INFECTED_PROBABILITY = 0.04;
     
     /**
      * Create a new Mycoplasma.
@@ -25,6 +24,7 @@ public class Mycoplasma extends Cell {
     public Mycoplasma(Field field, Location location) {
         super(field, location);
         setColor(Color.MAGENTA);
+        isInfected();
     }
 
     /**
@@ -36,21 +36,17 @@ public class Mycoplasma extends Cell {
         Random rand = Randomizer.getRandom();
         if (isAlive()) {
             incrementAge();
-            if(!checkHealth()) {
-                if (rand.nextDouble() <= INFECTED_PROBABILITY) {
-                    isInfected();
-                }
-            }
-            else if (neighbours.size() < 2) {
-                 setNextState(false);
-                 resetAge();
+            if (neighbours.size() < 2) {
+                setNextState(false);
             }
             else if (neighbours.size() == 2 || neighbours.size() == 3) {
-                 setNextState(true);
+                setNextState(true);
             }
-            else if(neighbours.size() > 3) {
-                 setNextState(false);
-                 resetAge();
+            else if (neighbours.size() > 3) {
+                setNextState(false);
+            }
+            else if (getField().WBCpresent(neighbours)) {
+                setNextState(false);
             }
         }
         else {
@@ -60,5 +56,3 @@ public class Mycoplasma extends Cell {
         }
     }
 }
-
-
