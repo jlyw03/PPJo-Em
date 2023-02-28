@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=WhiteBloodCell
-comment0.text=\r\n\ Another\ form\ of\ life.\ \r\n\r\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\r\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\r\n\ @version\ 2022.02.28\r\n
+comment0.text=\n\ Another\ form\ of\ life.\ \n\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ &\ Jeffery\ Raphael\n\ @modifiedBy\ Jolene\ Yan\ Wen\ Lim,\ Soo\ Zhi\ Xin\n\ @version\ 2022.02.28\n
 comment1.params=field\ location
 comment1.target=WhiteBloodCell(Field,\ Location)
-comment1.text=\r\n\ Create\ a\ new\ WhiteBloodCell.\r\n\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
+comment1.text=\n\ Create\ a\ new\ WhiteBloodCell.\n\n\ @param\ field\ The\ field\ currently\ occupied.\n\ @param\ location\ The\ location\ within\ the\ field.\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ This\ is\ how\ the\ WhiteBloodCell\ decides\ if\ it's\ alive\ or\ not\r\n
+comment2.text=\n\ This\ is\ how\ the\ WhiteBloodCell\ decides\ if\ it's\ alive\ or\ not\n
 comment3.params=
 comment3.target=void\ switchColor()
-comment3.text=\r\n\ This\ makes\ the\ cell\ change\ color\ between\ generations\ \r\n
+comment3.text=\n\ This\ makes\ the\ cell\ change\ color\ between\ generations\ \n
 numComments=4
