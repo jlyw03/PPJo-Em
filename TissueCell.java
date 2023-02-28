@@ -13,9 +13,6 @@ import java.util.Random;
 public class TissueCell extends Cell {
     private static final double RECOVER_PROBABILITY = 0.2;
     private static final double INFECTED_PROBABILITY = 0.04;
-    private static final double COMING_ALIVE_PROBABILITY = 0.1; 
-    private static final double SET_DEAD_PROBABILITY = 0.1;
-    
     
     /**
      * Create a new TissueCell.

@@ -11,6 +11,10 @@ import java.util.Random;
  */
 
 public class Oxygen extends Cell {
+    private static final double COMING_ALIVE_PROBABILITY = 0.3; 
+    private static final double SET_DEAD_PROBABILITY = 0.3;
+    private static final double LIVE_ON_PROBABILITY = 1.0;
+    
     /**
      * Create a new Oxygen.
      *
@@ -28,21 +32,24 @@ public class Oxygen extends Cell {
     public void act() {
         List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
         setNextState(false);
+        Random rand = Randomizer.getRandom();
+        double randDouble = rand.nextDouble();
         if (isAlive()) {
             incrementAge();
-            if(getField().RBCpresent(neighbours)) {
+            if(randDouble <= SET_DEAD_PROBABILITY && getField().RBCpresent(neighbours)) {
                 setNextState(false);
             }
-            else {
+            else if (randDouble <= LIVE_ON_PROBABILITY) {
                 setNextState(true);
             }
         }
         else {
-            if (neighbours.size() == 4) {
+            if (randDouble <= COMING_ALIVE_PROBABILITY) {
                 setNextState(true);
+            }
+            else {
+                setNextState(false);
             }
         }
     }
 }
-
-
