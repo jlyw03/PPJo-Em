@@ -182,6 +182,7 @@ public class Field {
     /**
      * Checks for the presence of Red Blood Cell in neighbours
      * 
+     * @param List of Neighbours
      * @return True if Red Blood Cell is in neighbours
      */
     public boolean RBCpresent(List<Cell> neighbours) {
@@ -194,9 +195,10 @@ public class Field {
     }
     
     /**
-     * Checks for the presence of Red Blood Cell in neighbours
+     * Checks for the presence of White Blood Cell in neighbours
      * 
-     * @return True if Red Blood Cell is in neighbours
+     * @param List of Neighbours
+     * @return True if White Blood Cell is in neighbours
      */
     public boolean WBCpresent(List<Cell> neighbours) {
         for (Cell cell : neighbours) {
@@ -208,9 +210,10 @@ public class Field {
     }
     
     /**
-     * Checks for the presence of Red Blood Cell in neighbours
+     * Checks for the presence of Oxygen in neighbours
      * 
-     * @return Boolean True if Red Blood Cell is in neighbours
+     * @param List of Neighbours
+     * @return Boolean True if Oxygen is in neighbours
      */
     public boolean oxygenPresent(List<Cell> neighbours) {
         for (Cell cell : neighbours) {
@@ -224,6 +227,7 @@ public class Field {
     /**
      * Checks for any infected cells in neighbours
      * 
+     * @param List of Neighbours
      * @return Boolean True if there are infected cell(s) in neighbours
      */
     public boolean infectedPresent(List<Cell> neighbours) {

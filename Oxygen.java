@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Oxygen extends Cell {
     private static final double COMING_ALIVE_PROBABILITY = 0.3; 
-    private static final double SET_DEAD_PROBABILITY = 0.3;
+    private static final double SET_DEAD_PROBABILITY = 0.6;
     private static final double LIVE_ON_PROBABILITY = 1.0;
     
     /**
@@ -46,9 +46,6 @@ public class Oxygen extends Cell {
         else {
             if (randDouble <= COMING_ALIVE_PROBABILITY) {
                 setNextState(true);
-            }
-            else {
-                setNextState(false);
             }
         }
     }

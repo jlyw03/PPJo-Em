@@ -29,10 +29,9 @@ public class WhiteBloodCell extends Cell {
     public void act() {
          List<Cell> neighbours = getField().getLivingNeighbours(getLocation());
          setNextState(false);
-         
+         switchColor();
          if (isAlive()) {
              incrementAge();
-             switchColor();
              if (neighbours.size() < 2) {
                  setNextState(false);
                  resetAge();
@@ -53,8 +52,9 @@ public class WhiteBloodCell extends Cell {
     
      
     /**
-     * This makes the cell change color between generations 
-    */
+     * This makes the cell change color between generations depending on its
+     * age: EVEN - Orange, ODD - Yellow
+     */
     public void switchColor() 
     {
         if (getAge() %2 == 0) {

@@ -41,16 +41,11 @@ public class RedBloodCell extends Cell {
             if (OxygenLevel > 0 && getAge() <= 20) {
                 setNextState(true);
             }
-            else {
-                setNextState(false);
-            }
         }
         else {
-            if (neighbours.size() == 3) {
+            if (neighbours.size() == 7) {
                 setNextState(true);
             }
         }
     }
 }
-
-

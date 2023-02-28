@@ -11,7 +11,7 @@ import java.util.Random;
  */
  
 public class TissueCell extends Cell {
-    private static final double RECOVER_PROBABILITY = 0.2;
+    private static final double RECOVER_PROBABILITY = 0.4;
     private static final double INFECTED_PROBABILITY = 0.04;
     
     /**
@@ -47,10 +47,10 @@ public class TissueCell extends Cell {
                 else {
                     setNextState(false);
                     recoverInfected();
+                    setColor(Color.BLUE);
                 }
             }
             else {
-                switchColor();
                 if (getField().infectedPresent(neighbours) && rand.nextDouble() <= INFECTED_PROBABILITY) {
                     isInfected();
                     setColor(Color.GREEN);
@@ -59,6 +59,7 @@ public class TissueCell extends Cell {
                     } else {
                         setNextState(false);
                         recoverInfected();
+                        setColor(Color.BLUE);
                     }
                 }
             }
@@ -67,15 +68,6 @@ public class TissueCell extends Cell {
             if (neighbours.size() == 4) {
                  setNextState(true);
             }
-        }
-    }
-    
-    /**
-     * Checks the age of this cell and set its color to gray if it is aged 40 or over
-     */
-    private void switchColor() {
-        if (getAge() >= 40) {
-            setColor(Color.DARK_GRAY);
         }
     }
 }

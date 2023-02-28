@@ -133,8 +133,6 @@ public abstract class Cell {
     
     /**
      * Sets the cell's age to 0
-     * 
-     * @param int Age
      */
     protected void resetAge()
     {
@@ -150,7 +148,7 @@ public abstract class Cell {
     }
     
     /**
-     * Makes cells infected
+     * Makes cell infected
      */
     protected void isInfected()
     {
@@ -158,7 +156,7 @@ public abstract class Cell {
     }
     
     /**
-     * Makes infected cells recover
+     * Makes infected cell recover
      */
     protected void recoverInfected()
     {
