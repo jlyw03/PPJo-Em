@@ -23,16 +23,16 @@ public class Simulator {
     private static final double MYCOPLASMA_ALIVE_PROB = 0.1;
     
     // The probability that a White Blood Cell is alive 
-    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.3;
+    private static final double WHITEBLOODCELL_ALIVE_PROB = 0.2;
     
     // The probability that a Tissue Cell is alive
-    private static final double TISSUECELL_ALIVE_PROB = 0.5;
+    private static final double TISSUECELL_ALIVE_PROB = 0.3;
     
     // The probability that a Red Blood Cell is alive
-    private static final double REDBLOODCELL_ALIVE_PROB = 0.6;
+    private static final double REDBLOODCELL_ALIVE_PROB = 0.4;
     
     // The probability that a Oxygen Cell is alive
-    private static final double OXYGEN_ALIVE_PROB = 0.7;
+    private static final double OXYGEN_ALIVE_PROB = 0.5;
 
     // List of cells in the field.
     private List<Cell> cells;
